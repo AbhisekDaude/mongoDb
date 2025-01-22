@@ -15,9 +15,9 @@ app.get('/', (req, res)=>{
 app.get('/create', async (req, res) => {    
 
   let createduser= await userModel.create({  // we create the user if we run the code of route create  then the user will create it shows on the webbroswer
-    name:"harsh",
-    email:"harsh@gmail.com",
-    username:"harsh"
+    name:"Aayu",
+    email:"Ayau@gmail.com",
+    username:"Aayudaue"
    })
   res.send(createduser);
 
@@ -33,6 +33,22 @@ app.get('/create', async (req, res) => {
     res.send(updateduser);
 
   })
+
+  //Read opertion
+  app.get("/read", async (req, res)=>{
+let users= await userModel.find();  // this code is used to read the all the users we created
+//  let users= await userModel.find({username:"harsh"}); // This line of code is for the one user to read
+  res.send(users);
+  })
+
+
+  // This route is for the deleting the users
+  app.get('/delete', async (req, res) => {
+    let users= await userModel.findOneAndDelete({username:"harsh"});
+    res.send(users);
+  })
+
+
 });
 app.listen(3000, ()=>{
     console.log("server is running");
